@@ -35,7 +35,8 @@ class NeuralNetwork:
         #print("self.hin.shape : ",self.hin.shape)
         #print("self.phi(self.hin).shape : ",self.phi(self.hin).shape)
         #print("self.add_bias(self.phi(self.hin)).shape : ",self.phi(self.hin).shape)
-        self.hout =  self.add_bias(self.phi(self.hin))
+        self.hidden_layer_output = self.phi(self.hin)
+        self.hout =  self.add_bias(self.hidden_layer_output)
         #print("self.hout.shape : ",self.hout.shape)
         #print("self.v : ",self.v.shape)
         self.oin = self.hout @ self.v
@@ -48,11 +49,10 @@ class NeuralNetwork:
         #print("self.out : ",self.out.shape)
         
 
-        T = T.reshape(-1, 1)
-        #print("T.shape : ",T)
+        #T = T.reshape(-1, 1)
+        #print("T.shape : ",T.shape)
         #print("self.out : ",self.out.shape)
         #print("self.d_phi(self.out).shape : ",self.d_phi(self.out).shape)
-        #print("self.d_phi(self.out) : ",self.d_phi(self.out))
         #delta_o = n(self.out-T) self.d_phi(self.out)
         #print((self.out-T)*self.d_phi(self.out))
         #print("self.out.shape : ",self.out.shape)
@@ -101,6 +101,7 @@ class NeuralNetwork:
                 X = train_data[i:i+batch_size,:]
                 T = train_labels[i:i+batch_size]
                 Y = self.forward(X)
+                T = T.reshape(-1,1)
                 self.backward(T)
                 Y= Y.T.flatten()
                 print("Y : ",Y)
