@@ -11,8 +11,8 @@ patterns = np.eye(8) * 2 - 1
 targets = patterns
 
 # Print the result
-print("Patterns:\n", patterns)
-print("Targets:\n", targets)
+#print("Patterns:\n", patterns)
+#print("Targets:\n", targets)
 
 epochs = 2000
 
@@ -31,9 +31,9 @@ for i in range(epochs):
     T = y_train
     Y = nn.forward(X)
 
-    print("Y_train : ",Y)
-    print("T_train : ",T)
-    print("nn.hidden_layer_output : ",np.where(nn.hidden_layer_output > 0, 1, 0) )
+    #print("Y_train : ",Y)
+    #print("T_train : ",T)
+    #rint("nn.hidden_layer_output : ",np.where(nn.hidden_layer_output > 0, 1, 0) )
 
     nn.backward(T)
     
@@ -51,6 +51,13 @@ for i in range(epochs):
     #print("Y_test : ",Y)
     #print("T_test : ",T)
     #test_error.append(epoch_test_error)
+Y = nn.forward(X)
+    #epoch_test_error += np.sum((Y-T)**2)/test_samples
+for i, input in enumerate(X):
+    print("input : ",input," hidden : ",np.where(nn.hidden_layer_output[i] > 0, 1, 0))
+#print("Y_test : ",Y)
+#print("T_test : ",T)
+#print("nn.hidden_layer_output : ",np.where(nn.hidden_layer_output > 0, 1, 0) )
 
 plt.plot(training_error)
 plt.plot(test_error)
