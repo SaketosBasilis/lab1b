@@ -33,9 +33,9 @@ train_error = []
 test_error = []
 print("patterns.shape : ",patterns.shape)
 print("targets.shape : ",targets.shape)
-epochs = 100
+epochs = 40
 batch_size = 4
-nn = feed_forward_newral_network.NeuralNetwork(input_size=2, hidden_size=10, output_size=1, hta=0.01)
+nn = feed_forward_newral_network.NeuralNetwork(input_size=2, hidden_size=10, output_size=1, hta_init=0.1,hta_final=0.001,epochs=epochs)
 train_samples = len(y_train)
 test_samples = len(y_test)
 for i in range(epochs):
@@ -46,12 +46,10 @@ for i in range(epochs):
         Y = nn.forward(X)
         nn.backward(T)
         Y= Y.T.flatten()
-        T = T.flatten()
-        #print("Y : ",Y)
-        #print("T : ",T)
-        
+        T = T.flatten()       
         
         epoch_train_error += np.sum((Y-T)**2)
+    nn.update_sceduler()
     epoch_test_error = 0
     for i in range(0,test_samples,batch_size):
         X = X_test[i:i+batch_size,:]

@@ -83,7 +83,7 @@ def create_dataset_20_80_from_classA(classA, classB):
     np.random.shuffle(test_set.T)
     #print("train_set.shape : ",train_set.shape)
     #print("test_set.shape : ",test_set.shape)
-    return train_set, test_set
+    return train_set.T, test_set.T
 
 
 
