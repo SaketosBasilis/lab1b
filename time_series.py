@@ -166,7 +166,7 @@ trial = 0
 best_hyperparameters = {"hidden_size_1":0, "hidden_size_2":0,"lambda_reg":0}#4, 5
 worst_hyperparameters = {"hidden_size_1":0, "hidden_size_2":0,"lambda_reg":0}#4, 5
 
-hyperparameters = {"hidden_size_1":[3,5,6], "hidden_size_2":[4, 8,9],"lambda_reg":[0,1e-4,1e-3,1e-2]}#4, 5
+hyperparameters = {"hidden_size_1":[3,5,6], "hidden_size_2":[4, 8,9],"lambda_reg":[0,1e-6,1e-4]}#4, 5
 for lambda_reg in hyperparameters["lambda_reg"]:
     for hidden_size_1 in hyperparameters["hidden_size_1"]:
         for hidden_size_2 in hyperparameters["hidden_size_2"]:

@@ -54,13 +54,13 @@ class NeuralNetwork:
         self.v = self.v + self.hta*self.dv
 
 
-    def train(self, epochs=1000, batch_size = 4):
+    def train(self, epochs=1000, batch_size = 40):
         classA, classB = create_data.create_linsep_data(100)
 
         classA, classB = create_data.create_non_linsep_data(100)
-        train_dataset, test_dataset = create_data.create_dataset_20_80_from_classA(classA, classB)
-        print( train_dataset, test_dataset)
-        #train_dataset, test_dataset = create_data.create_dataset(classA, classB,0,0.5) # ,classA_in_the_test,classB_in_the_test
+        #train_dataset, test_dataset = create_data.create_dataset_20_80_from_classA(classA, classB)
+        #print( train_dataset, test_dataset)
+        train_dataset, test_dataset = create_data.create_dataset(classA, classB,0.25,0.25) # ,classA_in_the_test,classB_in_the_test
         train_error = []
         test_error = []
         train_samples, dim = train_dataset.shape
@@ -151,7 +151,7 @@ if __name__ == "__main__":
     # y_encoded = np.eye(2)[y]
 
     # Initialize the network: 2 input features, 2 hidden units, 2 output units (binary classification)
-    nn = NeuralNetwork(input_size=2, hidden_size=25, output_size=1, hta=0.001)
+    nn = NeuralNetwork(input_size=2, hidden_size=2, output_size=1, hta_init=0.01,hta_final=0.01)
 
     # Train the model
-    nn.train( epochs=500)
+    nn.train( epochs=1000)

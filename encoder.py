@@ -14,9 +14,9 @@ targets = patterns
 #print("Patterns:\n", patterns)
 #print("Targets:\n", targets)
 
-epochs = 2000
+epochs = 500
 
-nn = feed_forward_newral_network.NeuralNetwork(input_size=8, hidden_size=3, output_size=8, hta=0.1)
+nn = feed_forward_newral_network.NeuralNetwork(input_size=8, hidden_size=3, output_size=8, hta_init=0.1,hta_final=0.1)
 #X_train, X_test, y_train, y_test = train_test_split(patterns, targets, test_size=0.33, random_state=42)
 X_train, y_train = patterns, targets
 train_samples = len(y_train)

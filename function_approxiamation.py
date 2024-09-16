@@ -27,15 +27,15 @@ plt.draw()
 targets = Z_plot.reshape(1, -1).T  # equivalent to MATLAB's reshape(z, 1, ndata)
 patterns = np.vstack([X_plot.ravel(), Y_plot.ravel()]).T
 
-X_train, X_test, y_train, y_test = train_test_split(patterns, targets, test_size=0.4, random_state=42)
+X_test, X_train,y_test,  y_train = train_test_split(patterns, targets, test_size=0.2, random_state=42)
 
 train_error = []
 test_error = []
 print("patterns.shape : ",patterns.shape)
 print("targets.shape : ",targets.shape)
-epochs = 40
-batch_size = 4
-nn = feed_forward_newral_network.NeuralNetwork(input_size=2, hidden_size=10, output_size=1, hta_init=0.1,hta_final=0.001,epochs=epochs)
+epochs = 500
+batch_size = 2
+nn = feed_forward_newral_network.NeuralNetwork(input_size=2, hidden_size=25, output_size=1, hta_init=0.3,hta_final=0.0001,epochs=epochs)
 train_samples = len(y_train)
 test_samples = len(y_test)
 for i in range(epochs):
@@ -74,8 +74,13 @@ for i in range(epochs):
     zz = out.reshape(gridsize, gridsize)
 
     # Plot the surface
-    ax.plot_wireframe(X_plot, Y_plot, Z_plot)
-    ax.plot_wireframe(X_plot, Y_plot, zz, color='red')
+    ax.set_xlabel('X')
+    ax.set_xlim(-5, 5)
+    ax.set_ylabel('Y')
+    ax.set_ylim(-5, 5)
+    ax.set_zlabel('Z')
+    ax.plot_wireframe(X_plot, Y_plot, Z_plot,label="x")
+    ax.plot_wireframe(X_plot, Y_plot, zz, color='red',label="aproximation")
     plt.pause(0.00000001)
 
     #ax.plot_wireframe(X, Y, zz)
